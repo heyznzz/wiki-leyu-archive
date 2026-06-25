@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>leyu 导航 · 轻量介绍页</title>
+  <style>
+    /* 全局重置 + 基础 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f4f9fb;
+      color: #1d2b36;
+      line-height: 1.6;
+      padding: 0 1.25rem 2.5rem;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    /* 顶部导航（轻量） */
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 0;
+      border-bottom: 1px solid #cde0e5;
+      margin-bottom: 2rem;
+    }
+
+    .nav-brand {
+      font-weight: 600;
+      font-size: 1.1rem;
+      letter-spacing: 0.3px;
+      color: #1f6d7a;
+      background: #e0f0f4;
+      padding: 0.2rem 0.8rem;
+      border-radius: 24px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #1f6d7a;
+      font-size: 0.9rem;
+      margin-left: 1.6rem;
+      font-weight: 450;
+      border-bottom: 1.5px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .nav-links a:hover {
+      border-bottom-color: #2a9d8f;
+      color: #145a64;
+    }
+
+    /* Hero 区域 */
+    .hero {
+      text-align: left;
+      margin: 2.5rem 0 3rem;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 550;
+      letter-spacing: -0.3px;
+      color: #0f3b44;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 640px;
+      color: #2c4d58;
+      background: #e9f3f6;
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      border-left: 4px solid #2a9d8f;
+    }
+
+    /* 核心介绍卡片网格 (3 个场景模块) */
+    .scene-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin: 2.8rem 0;
+    }
+
+    .scene-card {
+      background: white;
+      border-radius: 20px;
+      padding: 1.6rem 1.2rem;
+      box-shadow: 0 4px 12px rgba(0, 40, 50, 0.04);
+      transition: transform 0.15s, box-shadow 0.2s;
+      border: 1px solid #d7e6eb;
+    }
+
+    .scene-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 24px rgba(37, 99, 108, 0.07);
+      border-color: #b3d4dc;
+    }
+
+    .scene-card h3 {
+      font-size: 1.2rem;
+      font-weight: 540;
+      margin-bottom: 0.5rem;
+      color: #155a67;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .scene-card h3::before {
+      content: "·";
+      font-size: 1.8rem;
+      color: #2a9d8f;
+      line-height: 1;
+    }
+
+    .scene-card p {
+      font-size: 0.95rem;
+      color: #2e4d58;
+      margin: 0.4rem 0 0;
+    }
+
+    .scene-tag {
+      display: inline-block;
+      background: #d2ebf0;
+      color: #0f515d;
+      font-size: 0.75rem;
+      padding: 0.15rem 0.7rem;
+      border-radius: 30px;
+      margin-top: 0.6rem;
+      font-weight: 450;
+    }
+
+    /* 常见说明 (FAQ 摘要) */
+    .faq-summary {
+      background: #ffffffd9;
+      backdrop-filter: blur(2px);
+      border-radius: 28px;
+      padding: 1.8rem 2rem;
+      margin: 2.8rem 0;
+      border: 1px solid #cbe1e7;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+    }
+
+    .faq-summary h2 {
+      font-size: 1.3rem;
+      font-weight: 520;
+      color: #144c58;
+      margin-bottom: 1.2rem;
+      letter-spacing: 0.2px;
+    }
+
+    .faq-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .faq-item:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .faq-q {
+      font-weight: 530;
+      color: #1f5f6b;
+      font-size: 1rem;
+    }
+
+    .faq-a {
+      color: #3c5c66;
+      font-size: 0.95rem;
+      padding-left: 0.25rem;
+    }
+
+    .faq-a a {
+      color: #1d7b8a;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-color: #9ac9d4;
+      font-weight: 450;
+    }
+
+    .faq-a a:hover {
+      color: #0b5b68;
+      text-decoration-color: #217b8a;
+    }
+
+    /* 底部提示 */
+    .footer-note {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #cfdfe4;
+      font-size: 0.85rem;
+      color: #55737e;
+    }
+
+    .footer-note a {
+      color: #1d7b8a;
+      text-decoration: none;
+      border-bottom: 1px dotted #8dbcc8;
+    }
+
+    .footer-note a:hover {
+      border-bottom-style: solid;
+    }
+
+    /* 响应式细节 */
+    @media (max-width: 640px) {
+      body {
+        padding: 0 1rem 2rem;
+      }
+
+      .nav {
+        flex-wrap: wrap;
+        gap: 0.6rem;
+      }
+
+      .nav-links a {
+        margin-left: 1rem;
+        font-size: 0.85rem;
+      }
+
+      .hero h1 {
+        font-size: 1.6rem;
+      }
+
+      .hero p {
+        font-size: 0.98rem;
+      }
+
+      .scene-grid {
+        gap: 1rem;
+      }
+
+      .faq-summary {
+        padding: 1.4rem 1.2rem;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .nav-links a {
+        margin-left: 0.6rem;
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <!-- 顶部导航 -->
+  <nav class="nav">
+    <span class="nav-brand">leyu</span>
+    <div class="nav-links">
+      <a href="#intro">简介</a>
+      <a href="#scenes">场景</a>
+      <a href="#faq">说明</a>
+    </div>
+  </nav>
+
+  <!-- Hero 介绍：从用户快速识别用途切入 -->
+  <div class="hero" id="intro">
+    <h1>wiki-leyu · 轻量导航</h1>
+    <p>
+      如果只想快速了解一个网站是否与自己的需求有关，你并不需要冗长的介绍。
+      这个页面围绕 <strong>leyu</strong> 整理了一些典型用法和常见疑问，帮助你判断
+      <a href="https://wiki-leyu.com.cn">leyu</a> 能带来什么。
+    </p>
+  </div>
+
+  <!-- 三个场景模块 (网格卡片) -->
+  <div class="scene-grid" id="scenes">
+    <div class="scene-card">
+      <h3>信息检索场景</h3>
+      <p>
+        当你面对一个不熟悉的术语或概念时，<strong>leyu</strong> 相关的内容聚合能让你
+        在一处获得多角度的解释和上下文，不必反复切换页面。
+      </p>
+      <span class="scene-tag">快速对照</span>
+    </div>
+    <div class="scene-card">
+      <h3>横向浏览场景</h3>
+      <p>
+        不需要精确搜索，只需大致了解某个方向有哪些要点。通过分类索引和短条目，
+        <strong>leyu</strong> 可以帮你建立初步的知识脉络。
+      </p>
+      <span class="scene-tag">概览框架</span>
+    </div>
+    <div class="scene-card">
+      <h3>轻量参考场景</h3>
+      <p>
+        在写笔记、做简报或准备讨论时，<strong>leyu</strong> 提供简洁的描述和链接，
+        适合作为快速引用的起点，节省整理时间。
+      </p>
+      <span class="scene-tag">要点直达</span>
+    </div>
+  </div>
+
+  <!-- 常见说明 (FAQ 摘要) -->
+  <div class="faq-summary" id="faq">
+    <h2>常见说明</h2>
+
+    <div class="faq-item">
+      <span class="faq-q">这个网站主要收录什么内容？</span>
+      <span class="faq-a">
+        <a href="https://wiki-leyu.com.cn">leyu</a> 聚合了与核心主题相关的说明、背景和条目，
+        不局限于单一领域，更偏向实用性的轻量知识整理。
+      </span>
+    </div>
+
+    <div class="faq-item">
+      <span class="faq-q">是否需要注册或付费才能浏览？</span>
+      <span class="faq-a">
+        目前所有页面均可直接访问，无需登录或订阅。你可以自由阅读其中大部分内容。
+      </span>
+    </div>
+
+    <div class="faq-item">
+      <span class="faq-q">内容更新频率如何？</span>
+      <span class="faq-a">
+        维护者会不定期补充新条目和修正已有信息。如果你发现遗漏或想建议补充，
+        可以通过相关渠道反馈，不过目前未设评论区。
+      </span>
+    </div>
+  </div>
+
+  <!-- 底部提示（非强制） -->
+  <footer class="footer-note">
+    <span>基于常见使用场景整理 · 更多细节请直接探索 <a href="https://wiki-leyu.com.cn">leyu</a></span>
+  </footer>
+</div>
+</body>
+</html>
